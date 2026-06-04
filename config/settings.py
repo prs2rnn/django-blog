@@ -27,7 +27,7 @@ SECRET_KEY = setting.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = setting.DEBUG
 
-ALLOWED_HOSTS = setting.ALLOWED_HOSTS
+ALLOWED_HOSTS = setting.ALLOWED_HOSTS.split(",")
 
 
 # Application definition
@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "apps.core",
-    "apps.posts",
+    "apps.core.apps.CoreConfig",
+    "apps.posts.apps.PostsConfig",
 ]
 
 MIDDLEWARE = [
