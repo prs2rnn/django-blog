@@ -1,6 +1,10 @@
 (function () {
   let mybutton = document.getElementById("btn-back-to-top");
 
+  if (mybutton === null) {
+    return;
+  }
+
   window.onscroll = function () {
     scrollFunction();
   };
