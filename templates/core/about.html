@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<h1 class="text-center mt-4">{{ title }}</h1>
+<div class="mt-3">
+  <div class="d-flex align-items-center justify-content-between">
+    <p>
+      About me:
+      <br />
+      <b>Python backend developer</b>
+    </p>
+    <img
+      class="avatar mb-2"
+      src="{% static 'img/me.webp' %}"
+      alt="Me"
+      width="85"
+      height="85"
+    />
+  </div>
+  <div>
+    What I do:
+    <br />
+    <ul>
+      <li>Develop web applications using Django and FastAPI</li>
+      <li>Write scripts to automate routine tasks</li>
+      <li>Create APIs for service integration</li>
+      <li>Optimize code and improve application performance</li>
+    </ul>
+  </div>
+  <div>
+    How I can help:
+    <br />
+    <ul>
+      <li>Develop a web application or API</li>
+      <li>Create a bot for your business</li>
+      <li>Write a script to automate any task</li>
+      <li>Help with debugging and optimizing existing code</li>
+    </ul>
+  </div>
+  <p>
+    Examples of projects I have completed are presented in the
+    <a
+      class="post-link"
+      href="https://github.com/prs2rnn?tab=repositories"
+      target="_blank"
+      rel="noopener"
+      >portfolio</a
+    >
+  </p>
+</div>
+{% endblock content %}

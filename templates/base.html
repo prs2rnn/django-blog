@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="The blog." />
-    <title>{{ title }}</title>
+    <meta name="color-scheme" content="light dark" />
+    <title>Andrey Perestoronin | {{ title }}</title>
     <link
       rel="shortcut icon"
       href="{% static 'img/favicon.png' %}"
@@ -26,35 +27,43 @@
     ></script>
     <script src="{% static 'js/main.js' %}" defer></script>
   </head>
-  <body>
-    <nav></nav>
-    {% if messages %}
-    <div class="container mt-3">
-      {% for message in messages %}
-      <div
-        class="alert alert-dismissible fade show
-                      {% if message.tags == 'error' %}
-                        alert-danger
-                      {% else %}
-                        alert-{{ message.tags }}
-                      {% endif %}"
-        role="alert"
-      >
-        {{ message }}
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="alert"
-        ></button>
+  <body class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6 col-md-8 col-sm-10">
+        <nav
+          class="d-flex flex-row justify-content-end border-bottom py-2 mt-4 mb-2 border-white mb-4"
+          style="--bs-border-opacity: 0.1"
+        >
+          <div>
+            <a
+              class="{% if request.resolver_match.view_name == 'core:home' %}active{% endif %}"
+              href="{% url 'core:home' %}"
+              >home</a
+            >
+          </div>
+          <div class="ms-3">
+            <a
+              class="{% if request.resolver_match.view_name == 'core:about' %}active{% endif %}"
+              href="{% url 'core:about' %}"
+              >about</a
+            >
+          </div>
+          <div class="ms-3">
+            <a
+              class="{% if request.resolver_match.namespace == 'posts' %}active{% endif %}"
+              href="{% url 'posts:list' %}"
+              >blog</a
+            >
+          </div>
+        </nav>
+        <main class="">{% block content %}{% endblock content %}</main>
+        <footer
+          class="border-top border-white py-4 text-center"
+          style="--bs-border-opacity: 0.1"
+        >
+          <p>&copy; 2026 Andrey Perestoronin</p>
+        </footer>
       </div>
-      {% endfor %}
     </div>
-    {% endif %}
-    <main class="container">{% block content %}{% endblock content %}</main>
-    <footer class="border-top py-4 text-center">
-      <div class="container">
-        <p>&copy; 2026, Andrey Perestoronin</p>
-      </div>
-    </footer>
   </body>
 </html>
