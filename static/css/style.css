@@ -83,6 +83,7 @@ footer a:hover {
   right: 20px;
   color: var(--text);
   display: none;
+  border: none;
 }
 
 .post-content {

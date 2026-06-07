@@ -5,7 +5,7 @@ from .models import Post
 
 
 class LatestPostsFeed(Feed):
-    title = "My Blog"
+    title = "Andrey Perestoronin Blog RSS Feed"
     description = "Latest posts from my blog"
     link = "/posts/"
 

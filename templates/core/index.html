@@ -14,17 +14,28 @@
   <i class="bi bi-arrow-right"></i>
   <a href="{% url 'core:about' %}">About me</a>
 </p>
-<h2 class="fs-5 mt-5">Recent Posts</h2>
-<ul style="list-style-type: none" class="ps-0 ms-0">
-  {% for post in recent_posts %}
-  <li>
-    {{ post.created_at|date:"d M Y" }} &nbsp;
-    <a href="{% url 'posts:detail' post.slug %}"
-      >{{ post.title }}</a
-    >
-  </li>
-  {% empty %}
-  <li>No posts yet.</li>
-  {% endfor %}
-</ul>
+<div>
+  <h2 class="fs-5 mt-4">Currently</h2>
+
+  <ul>
+    <li>I’m working as a technical specialist in a tire service</li>
+    <li>
+      I’m gaining weight, working out in the street using kettlebell and bars
+    </li>
+    <li>I’m preparing for an interview for a Python-developer position</li>
+  </ul>
+</div>
+<div>
+  <h2 class="fs-5 mt-4">Recent Posts</h2>
+  <ul style="list-style-type: none" class="ps-0 ms-0">
+    {% for post in recent_posts %}
+    <li>
+      {{ post.created_at|date:"d M Y" }} &nbsp;
+      <a href="{% url 'posts:detail' post.slug %}">{{ post.title }}</a>
+    </li>
+    {% empty %}
+    <li>No posts yet.</li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock content %}
