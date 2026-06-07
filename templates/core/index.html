@@ -3,10 +3,18 @@
 <p>
   Greetings! Here are some of my once-important
   <a class="post-link" href="{% url 'posts:list' %}">notes</a> about both work
-  and life. I also write in Russian <a class="post-link" href="#">here</a>
+  and life. I also write in Russian <a class="post-link" href="#">here</a>.
 </p>
 <p>
   About me: <a class="post-link" href="{% url 'core:about' %}">/about</a>,
-  hobbies : see tags at the bottom <a class="post-link" href="#">of the page</a>
+  hobbies : see tags at the bottom <a class="post-link" href="#">of the page</a>.
 </p>
+<h2 class="fs-5 mt-5">Recent Posts</h2>
+<ul style="list-style-type: none;" class="ps-0 ms-0">
+  {% for post in recent_posts %}
+    <li>{{ post.created_at|date:"d M Y" }} » <a class="post-link" href="{% url 'posts:detail' post.slug %}">{{ post.title }}</a></li>
+  {% empty %}
+  <li>No posts yet.</li>
+  {% endfor %}
+</ul>
 {% endblock content %}
