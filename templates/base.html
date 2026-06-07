@@ -21,6 +21,7 @@
       href="{% static 'bootstrap/bootstrap-icons/bootstrap-icons.min.css' %}"
     />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/pygments.css' %}" />
     <script
       src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"
       defer
@@ -56,7 +57,7 @@
             >
           </div>
         </nav>
-        <main class="">{% block content %}{% endblock content %}</main>
+        <main class="mx-3 mx-md-0">{% block content %}{% endblock content %}</main>
         <footer
           class="border-top border-white py-4 text-center"
           style="--bs-border-opacity: 0.1"

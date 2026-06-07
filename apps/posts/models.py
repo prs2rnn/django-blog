@@ -1,7 +1,8 @@
 import math
 
-import markdown
 from django.db import models
+
+from .markdown import render_markdown
 
 
 class Post(models.Model):
@@ -32,11 +33,4 @@ class Post(models.Model):
 
     @property
     def html(self):
-        return markdown.markdown(
-            self.content,
-            extensions=[
-                "fenced_code",
-                "tables",
-                "toc",
-            ],
-        )
+        return render_markdown(self.content)
