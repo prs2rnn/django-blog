@@ -1,6 +1,7 @@
 import math
 
 from django.db import models
+from django.urls import reverse
 
 from .markdown import render_markdown
 
@@ -18,6 +19,9 @@ class Post(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
+
+    def get_absolute_url(self):
+        return reverse("posts:detail", kwargs={"slug": self.slug})
 
     @property
     def words_count(self):

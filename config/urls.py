@@ -18,12 +18,27 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
+
+from apps.posts.feeds import LatestPostsFeed
+from apps.posts.sitemaps import PostSitemap
+
+sitemaps = {
+    "posts": PostSitemap,
+}
 
 urlpatterns = [
     path("super-secret-admin/", admin.site.urls),
     path("posts/", include("apps.posts.urls")),
     path("", include("apps.core.urls")),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="sitemap",
+    ),
+    path("rss.xml", LatestPostsFeed(), name="rss"),
 ]
 
 if settings.DEBUG:
