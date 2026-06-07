@@ -1,3 +1,5 @@
+import math
+
 from django.db import models
 
 
@@ -14,3 +16,15 @@ class Post(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
+
+    @property
+    def words_count(self):
+        return len(self.content.split())
+
+    @property
+    def reading_time(self):
+        return math.ceil(self.words_count / 200)
+
+    @property
+    def was_updated(self):
+        return (self.updated_at - self.created_at).total_seconds() > 60

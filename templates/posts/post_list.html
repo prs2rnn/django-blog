@@ -1,10 +1,15 @@
-{% extends 'base.html' %} {% block content %} {% for post in posts %}
-<article>
-  <h2>
-    <a class="post-link" href="{% url 'posts:detail' post.slug %}">{{ post.title }}</a>
-  </h2>
-  <p>{{ post.created_at }}</p>
-</article>
-{% empty %}
-<p>No posts found.</p>
-{% endfor %} {% endblock content %}
+{% extends 'base.html' %} {% block content %}
+<h1 class="text-center mt-4 mb-4">{{ title }}</h1>
+<ul style="list-style-type: none" class="ps-0 ms-0">
+  {% for post in posts %}
+  <li>
+    {{ post.created_at|date:"d M Y" }} »
+    <a class="post-link" href="{% url 'posts:detail' post.slug %}"
+      >{{ post.title }}</a
+    >
+  </li>
+  {% empty %}
+  <li>No posts yet.</li>
+  {% endfor %}
+</ul>
+{% endblock content %}

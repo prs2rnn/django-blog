@@ -1,5 +1,21 @@
 {% extends 'base.html' %} {% block content %}
-<h1>{{ post.title }}</h1>
-<p>{{ post.created_at }}</p>
-<div>{{ post.content|linebreaks }}</div>
+<a class="post-link" href="{% url 'posts:list' %}"
+  ><i class="bi bi-arrow-left"></i> Back to blog
+</a>
+<h1 class="fs-3 mt-3">{{ post.title }}</h1>
+<p class="muted">
+  {{ post.created_at|date:"d M Y" }} · {{ post.words_count }} words ·
+  {{post.reading_time }} min read
+</p>
+<article class="post-content">{{ post.content|linebreaks }}</article>
+{% if post.was_updated %}
+<p class="muted">Updated: {{ post.updated_at|date:"d M Y" }}</p>
+{% endif %}
+<button
+        type="button"
+        class="btn btn-floating btn-lg"
+        id="btn-back-to-top"
+        >
+  <i class="bi bi-arrow-up"></i>
+</button>
 {% endblock content %}

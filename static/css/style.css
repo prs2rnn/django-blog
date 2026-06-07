@@ -54,11 +54,18 @@ nav a.active {
   text-decoration: underline;
   opacity: 0.9;
 }
-footer p {
+.muted {
   opacity: 0.5;
   font-size: smaller;
 }
 .avatar {
   object-fit: cover;
   flex-shrink: 0;
+}
+#btn-back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: var(--text);
+  display: none;
 }
