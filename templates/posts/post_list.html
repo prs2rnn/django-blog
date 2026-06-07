@@ -1,13 +1,18 @@
 {% extends 'base.html' %} {% block content %}
 <h1 class="text-center mt-4 mb-4">{{ title }}</h1>
 <ul style="list-style-type: none" class="ps-0 ms-0">
-  {% for post in posts %}
-  <li>
-    {{ post.created_at|date:"d M Y" }} »
-    <a class="post-link" href="{% url 'posts:detail' post.slug %}"
-      >{{ post.title }}</a
-    >
-  </li>
+  {% for post in posts %} {% ifchanged post.created_at.year %}
+  <h2 class="mt-4 fs-3">{{ post.created_at.year }}</h2>
+  {% endifchanged %}
+
+  <div class="d-flex justify-content-between">
+    <span>{{ post.created_at|date:"d M" }}</span>
+
+    <a href="{% url 'posts:detail' post.slug %}">
+      {{ post.title }}
+    </a>
+  </div>
+
   {% empty %}
   <li>No posts yet.</li>
   {% endfor %}

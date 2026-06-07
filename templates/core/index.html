@@ -1,18 +1,28 @@
 {% extends 'base.html' %} {% block content %}
 <h1 class="fs-3">Andrey Perestoronin</h1>
 <p>
-  Greetings! Here are some of my once-important
-  <a class="post-link" href="{% url 'posts:list' %}">notes</a> about both work
-  and life. I also write in Russian <a class="post-link" href="#">here</a>.
+  Python developer interested in backend development, automation, business
+  analysis and self-hosted software.
 </p>
 <p>
-  About me: <a class="post-link" href="{% url 'core:about' %}">/about</a>,
-  hobbies : see tags at the bottom <a class="post-link" href="#">of the page</a>.
+  I write about Django, Linux, Docker, productivity, English learning and other
+  things I find useful.
+</p>
+<p>
+  <i class="bi bi-arrow-right"></i>
+  <a href="{% url 'posts:list' %}">Browse all posts</a><br />
+  <i class="bi bi-arrow-right"></i>
+  <a href="{% url 'core:about' %}">About me</a>
 </p>
 <h2 class="fs-5 mt-5">Recent Posts</h2>
-<ul style="list-style-type: none;" class="ps-0 ms-0">
+<ul style="list-style-type: none" class="ps-0 ms-0">
   {% for post in recent_posts %}
-    <li>{{ post.created_at|date:"d M Y" }} » <a class="post-link" href="{% url 'posts:detail' post.slug %}">{{ post.title }}</a></li>
+  <li>
+    {{ post.created_at|date:"d M Y" }} &nbsp;
+    <a href="{% url 'posts:detail' post.slug %}"
+      >{{ post.title }}</a
+    >
+  </li>
   {% empty %}
   <li>No posts yet.</li>
   {% endfor %}

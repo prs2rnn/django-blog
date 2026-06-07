@@ -3,6 +3,7 @@
   --text: #111;
   --links: #60a5fa;
   --nav-opacity: 0.6;
+  --border: rgba(0, 0, 0, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -11,6 +12,7 @@
     --text: #f3f4f6;
     --links: #60a5fa;
     --nav-opacity: 0.5;
+    --border: rgba(255, 255, 255, 0.1);
   }
 }
 @font-face {
@@ -42,17 +44,30 @@ nav a:hover {
 nav a.active {
   opacity: 1;
 }
-.border-white {
-  --bs-border-opacity: 1;
-  border-color: rgba(var(--bs-white-rgb), var(--bs-border-opacity)) !important;
-}
-.post-link {
+main a {
   color: var(--links);
   text-decoration: none;
 }
-.post-link:hover {
+main a:hover {
   text-decoration: underline;
   opacity: 0.9;
+}
+footer a {
+  color: var(--text);
+  text-decoration: none;
+  text-transform: capitalize;
+  opacity: 0.5;
+  font-size: smaller;
+}
+footer a:hover {
+  opacity: 1;
+}
+footer a:hover {
+  opacity: 1;
+}
+.border-white {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-white-rgb), var(--bs-border-opacity)) !important;
 }
 .muted {
   opacity: 0.5;
@@ -68,4 +83,63 @@ nav a.active {
   right: 20px;
   color: var(--text);
   display: none;
+}
+
+.post-content {
+  line-height: 1.8;
+  overflow-wrap: break-word;
+}
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.post-content p {
+  margin-bottom: 1rem;
+}
+.post-content ul,
+.post-content ol {
+  padding-left: 2rem;
+}
+.post-content code {
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.post-content pre {
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: 8px;
+}
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.post-content th,
+.post-content td {
+  padding: 0.75rem;
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+.post-content th {
+  font-weight: 600;
+}
+
+.post-content tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+}
+.post-content figcaption {
+  margin-bottom: 1rem;
+  font-size: smaller;
 }

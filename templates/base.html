@@ -57,12 +57,20 @@
             >
           </div>
         </nav>
-        <main class="mx-3 mx-md-0">{% block content %}{% endblock content %}</main>
+        <main class="mx-3 mx-md-0">
+          {% block content %}{% endblock content %}
+        </main>
         <footer
-          class="border-top border-white py-4 text-center"
+          class="border-top border-white py-3 text-center mt-4"
           style="--bs-border-opacity: 0.1"
         >
-          <p class="muted">&copy; 2026 Andrey Perestoronin</p>
+          <span class="muted">&copy; 2026 Andrey Perestoronin ·</span>
+          <a
+            href="https://github.com/prs2rnn/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Source
+          </a>
         </footer>
       </div>
     </div>

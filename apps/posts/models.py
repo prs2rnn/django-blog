@@ -10,8 +10,8 @@ class Post(models.Model):
     slug = models.SlugField(unique=True, verbose_name="URL")
     content = models.TextField()
     is_published = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
 
     def __str__(self):
         return self.title

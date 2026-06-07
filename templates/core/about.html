@@ -1,49 +1,40 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <h1 class="text-center mt-4 mb-4">{{ title }}</h1>
 <div class="mt-3">
-  <div class="d-flex align-items-center justify-content-between">
+  <div class="d-flex align-items-top justify-content-between">
     <p>
-      About me:
+      I'm a Python developer from Russia. I work with Django, FastAPI and
+      automation tools. I enjoy building web applications, writing scripts and
+      exploring self-hosted software.
       <br />
-      <b>Python backend developer</b>
+      <br />
+      Examples of projects I have completed are presented in the
+      <a
+        href="https://github.com/prs2rnn?tab=repositories"
+        target="_blank"
+        rel="noopener noreferrer"
+        >portfolio</a
+      >.
     </p>
     <img
       class="avatar mb-2"
       src="{% static 'img/me.webp' %}"
-      alt="Me"
-      width="85"
-      height="85"
+      alt="Avatar"
+      width="150"
+      height="150"
     />
   </div>
-  <div>
-    What I do:
-    <br />
+
+  <div class="mt-3">
+    Outside of programming I am interested in:
     <ul>
-      <li>Develop web applications using Django and FastAPI</li>
-      <li>Write scripts to automate routine tasks</li>
-      <li>Create APIs for service integration</li>
-      <li>Optimize code and improve application performance</li>
+      <li>English learning</li>
+      <li>Beekeeping</li>
+      <li>Martial arts</li>
+      <li>Health</li>
     </ul>
+    Sometimes I keep notes about this and publish them on my
+    <a href="{% url 'posts:list' %}">blog</a>.
   </div>
-  <div>
-    How I can help:
-    <br />
-    <ul>
-      <li>Develop a web application or API</li>
-      <li>Create a bot for your business</li>
-      <li>Write a script to automate any task</li>
-      <li>Help with debugging and optimizing existing code</li>
-    </ul>
-  </div>
-  <p>
-    Examples of projects I have completed are presented in the
-    <a
-      class="post-link"
-      href="https://github.com/prs2rnn?tab=repositories"
-      target="_blank"
-      rel="noopener"
-      >portfolio</a
-    >.
-  </p>
 </div>
 {% endblock content %}
