@@ -1,5 +1,6 @@
 import math
 
+import markdown
 from django.db import models
 
 
@@ -28,3 +29,14 @@ class Post(models.Model):
     @property
     def was_updated(self):
         return (self.updated_at - self.created_at).total_seconds() > 60
+
+    @property
+    def html(self):
+        return markdown.markdown(
+            self.content,
+            extensions=[
+                "fenced_code",
+                "tables",
+                "toc",
+            ],
+        )
