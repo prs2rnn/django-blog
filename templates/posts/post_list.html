@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block content %} {% for post in posts %}
+<article>
+  <h2>
+    <a href="{% url 'posts:detail' post.slug %}">{{ post.title }}</a>
+  </h2>
+  <p>{{ post.created_at }}</p>
+</article>
+{% empty %}
+<p>No posts found.</p>
+{% endfor %} {% endblock content %}
