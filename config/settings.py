@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 
-from .env import setting
+from .config import setting
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,8 +27,7 @@ SECRET_KEY = setting.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = setting.DEBUG
 
-ALLOWED_HOSTS = setting.ALLOWED_HOSTS.split(",")
-
+ALLOWED_HOSTS = [host.strip() for host in setting.ALLOWED_HOSTS.split(",")]
 
 # Application definition
 
@@ -135,3 +134,26 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Media
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# Security
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = "DENY"
+SECURE_PROXY_SSL_HEADER = (
+    "HTTP_X_FORWARDED_PROTO",
+    "https",
+)
+SESSION_COOKIE_SECURE = setting.HTTPS_ENABLED
+CSRF_COOKIE_SECURE = setting.HTTPS_ENABLED
+SECURE_SSL_REDIRECT = setting.HTTPS_ENABLED
+CSRF_TRUSTED_ORIGINS = (
+    [host.strip() for host in setting.CSRF_TRUSTED_ORIGINS.split(",")]
+    if setting.CSRF_TRUSTED_ORIGINS
+    else []
+)
+SECURE_HSTS_SECONDS = 31536000 if setting.HTTPS_ENABLED else 0
+SECURE_HSTS_INCLUDE_SUBDOMAINS = setting.HTTPS_ENABLED
+SECURE_HSTS_PRELOAD = setting.HTTPS_ENABLED
