@@ -26,3 +26,14 @@ class AboutView(TemplateView):
         context["title"] = "About".lower()
 
         return context
+
+
+class ContactView(TemplateView):
+    template_name = "core/contact.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["title"] = "Contact".lower()
+
+        return context
