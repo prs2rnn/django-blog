@@ -57,7 +57,7 @@
           </div>
           <div class="ms-3">
             <a
-              class="{% if request.resolver_match.namespace == 'now' %}active{% endif %}"
+              class="{% if request.resolver_match.view_name == 'core:now' %}active{% endif %}"
               href="{% url 'core:now' %}"
               >now</a
             >
@@ -71,7 +71,7 @@
           </div>
           <div class="ms-3">
             <a
-              class="{% if request.resolver_match.namespace == 'uses' %}active{% endif %}"
+              class="{% if request.resolver_match.view_name == 'core:uses' %}active{% endif %}"
               href="{% url 'core:uses' %}"
               >uses</a
             >
