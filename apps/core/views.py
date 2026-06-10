@@ -48,3 +48,14 @@ class UsesView(TemplateView):
         context["title"] = "Uses".lower()
 
         return context
+
+
+class NowView(TemplateView):
+    template_name = "core/now.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["title"] = "Now".lower()
+
+        return context

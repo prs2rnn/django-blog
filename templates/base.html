@@ -57,6 +57,13 @@
           </div>
           <div class="ms-3">
             <a
+              class="{% if request.resolver_match.namespace == 'now' %}active{% endif %}"
+              href="{% url 'core:now' %}"
+              >now</a
+            >
+          </div>
+          <div class="ms-3">
+            <a
               class="{% if request.resolver_match.namespace == 'posts' %}active{% endif %}"
               href="{% url 'posts:list' %}"
               >blog</a
