@@ -54,12 +54,12 @@ prod-down:
 prod-shell:
 	docker compose \
 	-f docker-compose.yml \
-	exec web python manage.py shell
+	exec blog python manage.py shell
 
 prod-admin:
 	docker compose \
 	-f docker-compose.yml \
-	exec web python manage.py createsuperuser
+	exec blog python manage.py createsuperuser
 
 deploy:
 	./scripts/deploy.sh
