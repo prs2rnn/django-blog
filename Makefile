@@ -45,29 +45,20 @@ ci:
 install-hooks:
 	./scripts/install-hooks.sh
 
-docker-up:
-	docker compose up --build
-
-docker-down:
-	docker compose down
-
-docker-logs:
-	docker compose logs -f
-
 # Production
 prod-down:
 	docker compose \
-	-f docker-compose.prod.yml \
+	-f docker-compose.yml \
 	down
 
 prod-shell:
 	docker compose \
-	-f docker-compose.prod.yml \
+	-f docker-compose.yml \
 	exec web python manage.py shell
 
 prod-admin:
 	docker compose \
-	-f docker-compose.prod.yml \
+	-f docker-compose.yml \
 	exec web python manage.py createsuperuser
 
 deploy:
