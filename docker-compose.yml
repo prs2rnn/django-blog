@@ -1,0 +1,14 @@
+services:
+  blog:
+    image: ghcr.io/prs2rnn/django-blog
+
+    container_name: django-blog
+
+    restart: unless-stopped
+
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
