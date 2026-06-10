@@ -1,6 +1,6 @@
 [project]
 name = "django-blog"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Django-powered personal website"
 authors = [
     {name = "prs2rnn",email = "developer.prs2rnn@gmail.com"}
