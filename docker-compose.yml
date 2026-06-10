@@ -33,17 +33,13 @@ services:
 
     volumes:
       - static_data:/app/staticfiles
-      - media_data:/app/media
+      - ./media:/app/media
 
 volumes:
   postgres_data:
   static_data:
     external: true
     name: blog_static
-
-  media_data:
-    external: true
-    name: blog_media
 
 networks:
   web:
