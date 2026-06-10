@@ -62,6 +62,13 @@
               >blog</a
             >
           </div>
+          <div class="ms-3">
+            <a
+              class="{% if request.resolver_match.namespace == 'uses' %}active{% endif %}"
+              href="{% url 'core:uses' %}"
+              >uses</a
+            >
+          </div>
         </nav>
         <main class="mx-3 mx-md-0">
           {% block content %}{% endblock content %}

@@ -37,3 +37,14 @@ class ContactView(TemplateView):
         context["title"] = "Contact".lower()
 
         return context
+
+
+class UsesView(TemplateView):
+    template_name = "core/uses.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["title"] = "Uses".lower()
+
+        return context
