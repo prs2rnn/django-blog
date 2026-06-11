@@ -38,7 +38,7 @@ urlpatterns = [
         {"sitemaps": sitemaps},
         name="sitemap",
     ),
-    path("rss.xml", LatestPostsFeed(), name="rss"),
+    path("feed/", LatestPostsFeed(), name="rss"),
 ]
 
 if settings.DEBUG:
