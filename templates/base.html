@@ -4,13 +4,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="The blog." />
+    <meta
+      name="description"
+      content="This is a collection of notes about health, everyday life, learning and a few
+  technical topics."
+    />
     <meta name="color-scheme" content="light dark" />
+    <meta property="og:title" content="Andrey Perestoronin | {{ title }}" />
+    <meta property="og:image" content="{% static 'img/share.JPG' %}" />
+    <meta property="og:url" content="https://prs2rnn.tech" />
+    <meta property="”og:type”" content="”website”" />
+    <meta
+      property="og:description"
+      content="This is a collection of notes about health, everyday life, learning and a few
+  technical topics."
+    />
     <title>Andrey Perestoronin | {{ title }}</title>
     <link
       rel="alternate"
       type="application/rss+xml"
-      title="Andrey Perestoronin Blog RSS Feed"
+      title="Andrey Perestoronin RSS Feed"
       href="{% url 'rss' %}"
     />
     <link
