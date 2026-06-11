@@ -5,12 +5,16 @@
   technical topics.
 </p>
 <p>I work as a Python developer, but this is not only a programming blog.</p>
-<p>
-  <i class="bi bi-arrow-right"></i>
-  <a href="{% url 'posts:list' %}">Browse all posts</a><br />
-  <i class="bi bi-arrow-right"></i>
-  <a href="{% url 'core:about' %}">About me</a>
-</p>
+<div>
+  <div>
+    <i class="bi bi-arrow-right"></i>
+    <a href="{% url 'posts:list' %}">Browse all posts</a><br />
+  </div>
+  <div>
+    <i class="bi bi-arrow-right"></i>
+    <a href="{% url 'core:about' %}">About me</a>
+  </div>
+</div>
 <div>
   <h2 class="fs-5 mt-4">Currently</h2>
   {% include "includes/now.html" %}
