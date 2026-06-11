@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <h1 class="text-center mt-4 mb-4">{{ title }}</h1>
 <a href="{% url 'posts:list' %}"
-  ><i class="bi bi-arrow-left"></i> Back to blog
+  ><i class="bi bi-arrow-left"></i> Back to posts
 </a>
 <ul style="list-style-type: none" class="ps-0 ms-0 mt-2">
   {% for tag in tags %}

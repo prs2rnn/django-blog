@@ -1,11 +1,11 @@
 {% extends 'base.html' %} {% block content %}
 <a href="{% url 'posts:list' %}"
-  ><i class="bi bi-arrow-left"></i> Back to blog
+  ><i class="bi bi-arrow-left"></i> Back to posts
 </a>
 <h1 class="fs-3 mt-3">{{ post.title }}</h1>
 <p class="muted">
   {{ post.created_at|date:"d M Y" }} · {{ post.words_count }} words ·
-  {{post.reading_time }} min read
+  {{post.reading_time }} min read · {{ post.views }} views
 </p>
 <article class="post-content">{{ post.html|safe }}</article>
 {% if post.tags.all %}

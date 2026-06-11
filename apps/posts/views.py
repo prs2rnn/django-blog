@@ -1,4 +1,4 @@
-from django.db.models import Q
+from django.db.models import F, Q
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
 
@@ -26,7 +26,7 @@ class PostListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["query"] = self.request.GET.get("q", "")
-        context["title"] = "Blog".lower()
+        context["title"] = "posts".lower()
         context["tags"] = Tag.objects.all().order_by("name")
         return context
 
@@ -35,6 +35,19 @@ class PostDetailView(DetailView):
     model = Post
     template_name = "posts/detail.html"
     context_object_name = "post"
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+
+        session_key = f"viewed_post_{obj.pk}"
+
+        if not self.request.session.get(session_key):
+            Post.objects.filter(pk=obj.pk).update(views=F("views") + 1)
+            self.request.session[session_key] = True
+
+            obj.refresh_from_db()
+
+        return obj
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

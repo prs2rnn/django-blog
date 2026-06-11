@@ -25,6 +25,7 @@ class Post(models.Model):
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
     tags = models.ManyToManyField(Tag, blank=True, related_name="posts")
+    views = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
