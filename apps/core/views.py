@@ -17,45 +17,30 @@ class HomeView(TemplateView):
         return context
 
 
-class AboutView(TemplateView):
+class BasePageView(TemplateView):
+    page_title = ""
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = self.page_title.lower()
+        return context
+
+
+class AboutView(BasePageView):
     template_name = "core/about.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context["title"] = "About".lower()
-
-        return context
+    page_title = "About"
 
 
-class ContactView(TemplateView):
+class ContactView(BasePageView):
     template_name = "core/contact.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context["title"] = "Contact".lower()
-
-        return context
+    page_title = "Contact"
 
 
-class UsesView(TemplateView):
+class UsesView(BasePageView):
     template_name = "core/uses.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context["title"] = "Uses".lower()
-
-        return context
+    page_title = "Uses"
 
 
-class NowView(TemplateView):
+class NowView(BasePageView):
     template_name = "core/now.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context["title"] = "Now".lower()
-
-        return context
+    page_title = "Now"
