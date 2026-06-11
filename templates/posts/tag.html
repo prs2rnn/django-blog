@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block content %}
+<h1 class="text-center mt-4 mb-4">#{{ tag.name }}</h1>
+<a href="{% url 'posts:tags' %}"
+  ><i class="bi bi-arrow-left"></i> All Tags
+</a>
+<ul style="list-style-type: none" class="ps-0 ms-0 mt-2">
+  {% for post in posts %}
+
+  <div class="d-flex justify-content-between">
+    <span>{{ post.created_at|date:"d M" }}</span>
+
+    <a href="{% url 'posts:detail' post.slug %}"> {{ post.title }} </a>
+  </div>
+
+  {% empty %}
+  <li>No posts yet.</li>
+  {% endfor %}
+</ul>
+{% endblock content %}

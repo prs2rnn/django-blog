@@ -6,6 +6,17 @@ from django.urls import reverse
 from .markdown import render_markdown
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(unique=True)
+
+    class Meta:
+        ordering = ("name",)
+
+    def __str__(self):
+        return self.name
+
+
 class Post(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, verbose_name="URL")
@@ -13,6 +24,7 @@ class Post(models.Model):
     is_published = models.BooleanField(default=False)
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
+    tags = models.ManyToManyField(Tag, blank=True, related_name="posts")
 
     def __str__(self):
         return self.title

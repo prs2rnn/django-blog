@@ -8,6 +8,13 @@
   {{post.reading_time }} min read
 </p>
 <article class="post-content">{{ post.html|safe }}</article>
+{% if post.tags.all %}
+<p>
+  {% for tag in post.tags.all %}
+  <a href="{% url 'posts:tag' tag.slug %}">#{{ tag.name }}</a>
+  {% endfor %}
+</p>
+{% endif %}
 {% if post.was_updated %}
 <p class="muted">Updated: {{ post.updated_at|date:"d M Y" }}</p>
 {% endif %}

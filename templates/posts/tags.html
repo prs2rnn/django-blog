@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<h1 class="text-center mt-4 mb-4">{{ title }}</h1>
+<a href="{% url 'posts:list' %}"
+  ><i class="bi bi-arrow-left"></i> Back to blog
+</a>
+<ul style="list-style-type: none" class="ps-0 ms-0 mt-2">
+  {% for tag in tags %}
+
+  <div class="d-flex justify-content-between">
+    <a href="{% url 'posts:tag' tag.slug %}">#{{ tag.name }} </a>
+    ({{ tag.posts.count }})
+  </div>
+
+  {% empty %}
+  <li>No tags yet.</li>
+  {% endfor %}
+</ul>
+{% endblock content %}

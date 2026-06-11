@@ -1,7 +1,8 @@
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
 
-from .models import Post
+from .models import Post, Tag
 
 
 class PostListView(ListView):
@@ -15,7 +16,9 @@ class PostListView(ListView):
 
         if query:
             posts = posts.filter(
-                Q(title__icontains=query) | Q(content__icontains=query)
+                Q(title__icontains=query)
+                | Q(content__icontains=query)
+                | Q(tags__name__icontains=query)
             )
 
         return posts.order_by("-created_at")
@@ -24,6 +27,7 @@ class PostListView(ListView):
         context = super().get_context_data(**kwargs)
         context["query"] = self.request.GET.get("q", "")
         context["title"] = "Blog".lower()
+        context["tags"] = Tag.objects.all().order_by("name")
         return context
 
 
@@ -35,4 +39,33 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = self.object.title.lower()
+        return context
+
+
+class TagPostListView(ListView):
+    model = Post
+    template_name = "posts/tag.html"
+    context_object_name = "posts"
+
+    def get_queryset(self):
+        self.tag = get_object_or_404(Tag, slug=self.kwargs["slug"])
+
+        return Post.objects.filter(is_published=True, tags=self.tag).order_by(
+            "created_at"
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["tag"] = self.tag
+        return context
+
+
+class TagListView(ListView):
+    model = Tag
+    template_name = "posts/tags.html"
+    context_object_name = "tags"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Tags".lower()
         return context

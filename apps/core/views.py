@@ -2,7 +2,7 @@ from django.views.generic import TemplateView
 
 from apps.core.models import SiteStats
 
-from ..posts.models import Post
+from ..posts.models import Post, Tag
 
 
 class HomeView(TemplateView):
@@ -17,11 +17,13 @@ class HomeView(TemplateView):
         )[:5]
 
         posts = Post.objects.filter(is_published=True)
+        tags = Tag.objects
 
         context["post_count"] = posts.count()
         context["total_words"] = sum(post.words_count for post in posts)
         context["first_post"] = posts.order_by("created_at").first()
         context["visits"] = SiteStats.get().visits
+        context["tag_count"] = tags.count()
 
         return context
 

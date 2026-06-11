@@ -18,7 +18,7 @@
   {% endifchanged %}
 
   <div class="d-flex justify-content-between">
-    <span>{{ post.created_at|date:"d M" }}</span>
+    <span class="me-2">{{ post.created_at|date:"d M" }}</span>
 
     <a href="{% url 'posts:detail' post.slug %}"> {{ post.title }} </a>
   </div>
@@ -27,4 +27,9 @@
   <li>No posts yet.</li>
   {% endfor %}
 </ul>
+<p>
+  {% for tag in tags %}
+  <a href="{% url 'posts:tag' tag.slug %}">#{{ tag.name }}</a>
+  {% endfor %}
+</p>
 {% endblock content %}
