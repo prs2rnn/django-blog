@@ -1,5 +1,7 @@
 from django.views.generic import TemplateView
 
+from apps.core.models import SiteStats
+
 from ..posts.models import Post
 
 
@@ -13,6 +15,13 @@ class HomeView(TemplateView):
         context["recent_posts"] = Post.objects.filter(is_published=True).order_by(
             "-created_at"
         )[:5]
+
+        posts = Post.objects.filter(is_published=True)
+
+        context["post_count"] = posts.count()
+        context["total_words"] = sum(post.words_count for post in posts)
+        context["first_post"] = posts.order_by("created_at").first()
+        context["visits"] = SiteStats.get().visits
 
         return context
 

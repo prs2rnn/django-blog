@@ -28,4 +28,14 @@
     {% endfor %}
   </ul>
 </div>
+<div>
+  <h2 class="fs-5 mt-4">Site stats</h2>
+  <ul style="list-style-type: none" class="ps-0 ms-0">
+    <li>Posts: {{ post_count }}</li>
+    <li>Words: {{ total_words }}</li>
+    <li>Tags: 0</li>
+    <li>Visits: {{ visits }}</li>
+    <li>First post: {{ first_post.created_at|date:"d M Y" }}</li>
+  </ul>
+</div>
 {% endblock content %}
