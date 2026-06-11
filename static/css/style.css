@@ -145,11 +145,18 @@ footer a:hover {
   margin-bottom: 1rem;
   font-size: smaller;
 }
-.search,
-.search:hover,
-.search:active {
-  border: var(--border);
-  color: var(--text);
-  border-width: 1.5px;
-  border-left-style: none;
+.form-control,
+.search {
+  border-color: var(--border);
+}
+
+.form-control:focus {
+  border-color: var(--border);
+  box-shadow: none;
+  outline: none;
+}
+
+.search {
+  border-left: none;
+  border-radius: 2px;
 }
