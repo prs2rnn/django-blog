@@ -3,7 +3,7 @@ from django.views.generic import ListView, TemplateView
 from apps.core.models import SiteStats
 
 from ..posts.models import Post, Tag
-from .models import Project
+from .models import Project, Tech
 
 
 class HomeView(TemplateView):
@@ -69,10 +69,23 @@ class ProjectListView(ListView):
     context_object_name = "projects"
 
     def get_queryset(self):
-        return Project.objects.filter(is_published=True).prefetch_related("techs")
+        queryset = Project.objects.filter(is_published=True).prefetch_related("techs")
+
+        selected_techs = self.request.GET.getlist("techs")
+        status = self.request.GET.get("status")
+
+        if selected_techs:
+            queryset = queryset.filter(techs__id__in=selected_techs)
+        if status:
+            queryset = queryset.filter(status=status)
+
+        return queryset.distinct()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "projects".lower()
         context["page_desc"] = "Things I've built - tools, websites, and experiments."
+        context["techs"] = Tech.objects.all()
+        context["selected_techs"] = self.request.GET.getlist("techs")
+
         return context

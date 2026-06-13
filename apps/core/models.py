@@ -32,12 +32,13 @@ class Project(models.Model):
 
     created_at = models.DateTimeField()
 
-    STATUS_CHOICES = [
-        ("wip", "Work in progress"),
-        ("done", "Finished"),
-    ]
+    class Status(models.TextChoices):
+        WIP = "wip", "Work in progress"
+        DONE = "done", "Finished"
 
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES)
+    status = models.CharField(
+        max_length=10, choices=Status.choices, default=Status.DONE
+    )
 
     class Meta:
         ordering = ["-created_at"]

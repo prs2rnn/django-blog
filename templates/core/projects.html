@@ -2,14 +2,52 @@
 
 <h1 class="text-center mt-4 mb-4">{{ title }}</h1>
 
+<form method="get" class="border p-2 rounded border-secondary">
+
+  <select name="status" class="form-select form-select-sm mb-2 form-select" aria-label="Status select">
+      <option value="">All statuses</option>
+      <option value="done" {% if request.GET.status == "done" %}selected {% endif %}>Finished</option>
+      <option value="wip" {% if request.GET.status == "wip" %}selected {% endif %}>Work in progress</option>
+  </select>
+
+  <div class="d-flex flex-row flex-wrap align-items-center mb-2">
+    {% for tech in techs %}
+      <div class="form-check me-2">
+
+          <input
+              class="form-check-input check"
+              type="checkbox"
+              name="techs"
+              value="{{ tech.id }}"
+              id="tech-{{ tech.id }}"
+              {% if tech.id|stringformat:"s" in selected_techs %}
+                  checked
+              {% endif %}
+          >
+
+          <label
+              class="form-check-label check"
+              for="tech-{{ tech.id }}"
+          >
+              {{ tech.name }}
+          </label>
+
+      </div>
+    {% endfor %}
+  </div>
+
+  <button class="btn btn-secondary search">Filter</button>
+  <a href="{% url 'core:projects' %}" class="btn btn-outline-secondary search" style="text-decoration: none;">Reset</a>
+</form>
+
 <ul style="list-style-type: none" class="ps-0 ms-0">
   {% for project in projects %} {% ifchanged project.created_at.year %}
   <h2 class="mt-4 fs-3">{{ project.created_at.year }}</h2>
   {% endifchanged %}
 
-  <li class="mb-5">
+  <li class="mb-4">
     <div class="d-flex justify-content-between align-items-center">
-      <h3 class="fs-5 mb-0">{{ project.title }}</h3>
+      <h3 class="fs-5 mb-0 fw-bold">{{ project.title }}</h3>
 
       <small class="muted"> {{ project.get_status_display }} </small>
     </div>

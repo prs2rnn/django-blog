@@ -153,3 +153,9 @@ footer a:hover {
 #copy-link {
   color: var(--text);
 }
+.check:hover {
+  cursor: pointer;
+}
+.form-select {
+  max-width: 200px;
+}
