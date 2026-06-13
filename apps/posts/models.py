@@ -3,8 +3,6 @@ import math
 from django.db import models
 from django.urls import reverse
 
-from .markdown import render_markdown
-
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -48,7 +46,3 @@ class Post(models.Model):
     @property
     def was_updated(self):
         return (self.updated_at - self.created_at).total_seconds() > 60
-
-    @property
-    def html(self):
-        return render_markdown(self.content)

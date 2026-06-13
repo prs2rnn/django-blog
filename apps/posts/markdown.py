@@ -3,15 +3,20 @@ import markdown
 
 
 def render_markdown(text: str):
-    html = markdown.markdown(
-        text,
+    md = markdown.Markdown(
         extensions=[
             "fenced_code",
             "tables",
             "toc",
             "codehilite",
+            "attr_list",
         ],
     )
+
+    html = md.convert(text)
+    toc = ""
+    if len(md.toc_tokens) >= 2:
+        toc = md.toc
 
     ALLOWED_TAGS = bleach.sanitizer.ALLOWED_TAGS | {
         "p",
@@ -39,7 +44,7 @@ def render_markdown(text: str):
         "figcaption",
     }
     ALLOWED_ATTRIBUTES = {
-        "*": ["class"],
+        "*": ["class", "id"],
         "a": [
             "href",
             "target",
@@ -49,4 +54,7 @@ def render_markdown(text: str):
         "img": ["src", "alt", "width", "height"],
     }
 
-    return bleach.clean(html, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRIBUTES)
+    html = bleach.clean(html, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRIBUTES)
+    toc = bleach.clean(toc, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRIBUTES)
+
+    return html, toc

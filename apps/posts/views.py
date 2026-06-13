@@ -2,6 +2,7 @@ from django.db.models import F, Q
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
 
+from .markdown import render_markdown
 from .models import Post, Tag
 
 
@@ -56,6 +57,11 @@ class PostDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["title"] = self.object.title.lower()
         context["page_desc"] = self.object.description
+
+        html, toc = render_markdown(self.object.content)
+        context["content"] = html
+        context["toc"] = toc
+
         return context
 
 
