@@ -6,10 +6,12 @@
       type="search"
       name="q"
       value="{{ query }}"
-      class="form-control"
+      class="form-control border border-secondary"
       placeholder="Search"
+      required
     />
-    <button type="submit" class="search"><i class="bi bi-search"></i></button>
+    <button type="submit" class="btn btn-outline-secondary search"><i class="bi bi-search"></i></button>
+    <a href="{% url 'posts:list' %}" class="btn btn-outline-secondary search"><i class="bi bi-x-lg"></i></a>
   </div>
 </form>
 <ul style="list-style-type: none" class="ps-0 ms-0">
