@@ -1,9 +1,10 @@
-{% extends 'base.html' %} {% block content %}
-{% load static %}
+{% extends 'base.html' %} {% block content %} {% load static %}
+
 {% block scripts %}
-  <script src="{% static 'js/btBack.js' %}" defer></script>
-  <script src="{% static 'js/btnCopy.js' %}" defer></script>
+<script src="{% static 'js/btnBack.js' %}" defer></script>
+<script src="{% static 'js/btnCopy.js' %}" defer></script>
 {% endblock scripts %}
+
 <a href="{% url 'posts:list' %}"
   ><i class="bi bi-arrow-left"></i> Back to posts
 </a>
@@ -26,4 +27,28 @@
 <button type="button" class="btn btn-floating btn-lg" id="btn-back-to-top">
   <i class="bi bi-arrow-up"></i>
 </button>
+<div class="border-start ps-2 border-secondary">
+  <span class="fw-bold">Questions?</span>
+  <br />
+  Send me an <a href="{% url 'core:contact' %}">email</a>.
+</div>
+<hr class="mt-5">
+<div>
+  <script src="https://giscus.app/client.js"
+        data-repo="prs2rnn/django-blog"
+        data-repo-id="R_kgDOSz8S0Q"
+        data-category="General"
+        data-category-id="DIC_kwDOSz8S0c4C_FTO"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
 {% endblock content %}
