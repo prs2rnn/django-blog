@@ -121,6 +121,7 @@
           <a href="{% url 'rss' %}">RSS</a>
           <span class="muted"> ·</span>
           <a href="{% url 'core:contact' %}">Contact</a>
+          <div class="muted">{% if site_updated %}Updated {{ site_updated }}{% endif %}</div>
         </footer>
       </div>
     </div>

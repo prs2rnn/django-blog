@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 from .config import setting
@@ -56,6 +57,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "config.urls"
 
+SITE_COMMIT = os.getenv("GIT_COMMIT")
+SITE_UPDATED = os.getenv("GIT_DATE")
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -66,6 +70,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "apps.core.context_processors.site_info",
             ],
         },
     },

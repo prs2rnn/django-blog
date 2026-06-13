@@ -21,9 +21,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get latest tag
-        id: tag
-        run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+      - name: Get git metadata
+        id: git
+        run: |
+          echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+          echo "date=$(git log -1 --format=%cd --date=format:'%d %b %Y')" >> $GITHUB_OUTPUT
+          echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -42,6 +45,9 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ steps.tag.outputs.tag }}
+            ghcr.io/${{ github.repository }}:${{ steps.git.outputs.tag }}
+          build-args: |
+            BUILD_DATE=${{ steps.git.outputs.date }}
+            GIT_COMMIT=${{ steps.git.outputs.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
