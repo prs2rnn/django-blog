@@ -20,16 +20,18 @@
     />
     <meta property="og:image" content="{% static 'img/share.jpg' %}" />
     <meta property="og:url" content="https://prs2rnn.tech" />
-    <meta property="og:site_name" content="Andrey Perestoronin's Website">
+    <meta property="og:site_name" content="Andrey Perestoronin's Website" />
     <meta property="”og:type”" content="”website”" />
     <meta
       property="og:description"
       content="{% if page_desc %}{{ page_desc }}{% else %}This is a collection of notes about health, everyday life, learning and a few
   technical topics.{% endif %}"
     />
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="summary_large_image" />
     <title>
-      {% if request.resolver_match.view_name == 'core:home' %}Andrey Perestoronin's Website{%else %}Andrey Perestoronin | {{ title }}{% endif %}
+      {% if request.resolver_match.view_name == 'core:home' %}Andrey
+      Perestoronin's Website{% else %}Andrey Perestoronin | {{ title }}
+      {% endif%}
     </title>
     <link
       rel="alternate"
@@ -56,7 +58,7 @@
       src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"
       defer
     ></script>
-    <script src="{% static 'js/main.js' %}" defer></script>
+    {% block scripts %}{% endblock scripts %}
   </head>
   <body class="container">
     <div class="row justify-content-center">
@@ -121,7 +123,9 @@
           <a href="{% url 'rss' %}">RSS</a>
           <span class="muted"> ·</span>
           <a href="{% url 'core:contact' %}">Contact</a>
-          <div class="muted">{% if site_updated %}Updated {{ site_updated }}{% endif %}</div>
+          <div class="muted">
+            {% if site_updated %}Updated {{ site_updated }}{% endif %}
+          </div>
         </footer>
       </div>
     </div>

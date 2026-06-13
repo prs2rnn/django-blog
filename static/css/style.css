@@ -150,3 +150,6 @@ footer a:hover {
 .search:focus {
   box-shadow: none;
 }
+#copy-link {
+  color: var(--text);
+}
