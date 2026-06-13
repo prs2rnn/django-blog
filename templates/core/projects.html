@@ -1,0 +1,57 @@
+{% extends "base.html" %} {% block content %}
+
+<h1 class="text-center mt-4 mb-4">{{ title }}</h1>
+
+<ul style="list-style-type: none" class="ps-0 ms-0">
+  {% for project in projects %} {% ifchanged project.created_at.year %}
+  <h2 class="mt-4 fs-3">{{ project.created_at.year }}</h2>
+  {% endifchanged %}
+
+  <li class="mb-5">
+    <div class="d-flex justify-content-between align-items-center">
+      <h3 class="fs-5 mb-0">{{ project.title }}</h3>
+
+      <small class="muted"> {{ project.get_status_display }} </small>
+    </div>
+
+    <p class="mt-2 mb-2">{{ project.description }}</p>
+
+    {% if project.techs.exists %}
+    <div class="mb-2">
+      {% for tech in project.techs.all %}
+      <span class="me-2 muted"> {{ tech.name }} </span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div>
+      {% if project.github_url %}
+      <a
+        href="{{ project.github_url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </a>
+      {% endif %} {% if project.demo_url %}
+      <span class="mx-2">·</span>
+
+      <a
+        href="{{ project.demo_url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Live
+      </a>
+      {% endif %}
+    </div>
+  </li>
+
+  {% empty %}
+
+  <li>No projects yet.</li>
+
+  {% endfor %}
+</ul>
+
+{% endblock %}

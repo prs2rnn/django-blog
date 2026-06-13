@@ -1,8 +1,9 @@
-from django.views.generic import TemplateView
+from django.views.generic import ListView, TemplateView
 
 from apps.core.models import SiteStats
 
 from ..posts.models import Post, Tag
+from .models import Project
 
 
 class HomeView(TemplateView):
@@ -60,3 +61,18 @@ class NowView(BasePageView):
     template_name = "core/now.html"
     page_title = "Now"
     page_desc = "My current status: what I’m working on, learning, and exploring at this moment. Updated regularly."
+
+
+class ProjectListView(ListView):
+    model = Project
+    template_name = "core/projects.html"
+    context_object_name = "projects"
+
+    def get_queryset(self):
+        return Project.objects.filter(is_published=True).prefetch_related("techs")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "projects".lower()
+        context["page_desc"] = "Things I've built - tools, websites, and experiments."
+        return context

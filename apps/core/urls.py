@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import AboutView, ContactView, HomeView, NowView, UsesView
+from .views import AboutView, ContactView, HomeView, NowView, ProjectListView, UsesView
 
 app_name = "core"
 
@@ -10,4 +10,5 @@ urlpatterns = [
     path("contact/", ContactView.as_view(), name="contact"),
     path("uses/", UsesView.as_view(), name="uses"),
     path("now/", NowView.as_view(), name="now"),
+    path("projects/", ProjectListView.as_view(), name="projects"),
 ]

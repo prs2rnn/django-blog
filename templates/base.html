@@ -97,6 +97,13 @@
           </div>
           <div class="ms-3">
             <a
+              class="{% if request.resolver_match.view_name == 'core:projects' %}active{% endif %}"
+              href="{% url 'core:projects' %}"
+              >projects</a
+            >
+          </div>
+          <div class="ms-3">
+            <a
               class="{% if request.resolver_match.view_name == 'core:uses' %}active{% endif %}"
               href="{% url 'core:uses' %}"
               >uses</a
