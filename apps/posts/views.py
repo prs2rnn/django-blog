@@ -28,6 +28,9 @@ class PostListView(ListView):
         context["query"] = self.request.GET.get("q", "")
         context["title"] = "posts".lower()
         context["tags"] = Tag.objects.all().order_by("name")
+        context["page_desc"] = (
+            "Complete archive of blog posts: health, lifestyle, education, and tech insights. Find past articles organized chronologically"
+        )
         return context
 
 
@@ -52,6 +55,7 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = self.object.title.lower()
+        context["page_desc"] = self.object.description
         return context
 
 

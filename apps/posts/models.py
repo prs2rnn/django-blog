@@ -21,6 +21,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, verbose_name="URL")
     content = models.TextField()
+    description = models.TextField(max_length=120, default="")
     is_published = models.BooleanField(default=False)
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()

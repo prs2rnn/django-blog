@@ -6,24 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="This is a collection of notes about health, everyday life, learning and a few
-  technical topics."
+      content="{% if page_desc %}{{ page_desc }}{% else %}This is a collection of notes about health, everyday life, learning and a few
+  technical topics.{% endif %}"
     />
     <meta
       name="google-site-verification"
       content="yRoNku4uK84Dly1VCsGw4whLBwWKI5KOztdDy8Deowc"
     />
     <meta name="color-scheme" content="light dark" />
-    <meta property="og:title" content="Andrey Perestoronin | {{ title }}" />
-    <meta property="og:image" content="{% static 'img/share.JPG' %}" />
+    <meta
+      property="og:title"
+      content="{% if request.resolver_match.view_name == 'core:home' %}Andrey Perestoronin's Website{% else %}Andrey Perestoronin | {{ title }}{% endif %}"
+    />
+    <meta property="og:image" content="{% static 'img/share.jpg' %}" />
     <meta property="og:url" content="https://prs2rnn.tech" />
+    <meta property="og:site_name" content="Andrey Perestoronin's Website">
     <meta property="”og:type”" content="”website”" />
     <meta
       property="og:description"
-      content="This is a collection of notes about health, everyday life, learning and a few
-  technical topics."
+      content="{% if page_desc %}{{ page_desc }}{% else %}This is a collection of notes about health, everyday life, learning and a few
+  technical topics.{% endif %}"
     />
-    <title>Andrey Perestoronin | {{ title }}</title>
+    <meta name="twitter:card" content="summary_large_image">
+    <title>
+      {% if request.resolver_match.view_name == 'core:home' %}Andrey Perestoronin's Website{%else %}Andrey Perestoronin | {{ title }}{% endif %}
+    </title>
     <link
       rel="alternate"
       type="application/rss+xml"
