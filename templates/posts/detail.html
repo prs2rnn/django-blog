@@ -3,6 +3,7 @@
 {% block scripts %}
 <script src="{% static 'js/btnBack.js' %}" defer></script>
 <script src="{% static 'js/btnCopy.js' %}" defer></script>
+<script src="{% static 'js/loadGiscus.js' %}" defer></script>
 {% endblock scripts %}
 
 <a href="{% url 'posts:list' %}"
@@ -33,22 +34,10 @@
 <button type="button" class="btn btn-floating btn-lg" id="btn-back-to-top">
   <i class="bi bi-arrow-up"></i>
 </button>
-<hr class="mt-5">
-<div>
-  <script src="https://giscus.app/client.js"
-          data-repo="prs2rnn/django-blog"
-          data-repo-id="R_kgDOSz8S0Q"
-          data-category="Posts"
-          data-category-id="DIC_kwDOSz8S0c4C_FZ_"
-          data-mapping="pathname"
-          data-strict="0"
-          data-reactions-enabled="1"
-          data-emit-metadata="0"
-          data-input-position="bottom"
-          data-theme="preferred_color_scheme"
-          data-lang="en"
-          crossorigin="anonymous"
-          async>
-  </script>
-</div>
+<details id="discussion-details" class="mt-4">
+  <summary>
+      Show discussion
+  </summary>
+  <div id="discussion" class="mt-3"></div>
+</details>
 {% endblock content %}
