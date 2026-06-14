@@ -12,9 +12,11 @@
 <h1 class="fs-3 mt-3">{{ post.title }}</h1>
 <p class="muted mb-1">
   {{ post.created_at|date:"d M Y" }} · {{ post.words_count }} words ·
-  {{post.reading_time }} min read · {{ post.views }} views ·
-  <a href="#" id="copy-link"><i class="bi bi-clipboard"></i> Copy link</a>
+  {{post.reading_time }} min read · {{ post.views }} views
 </p>
+<div class="mb-2">
+  <a href="#" id="copy-link"><i class="bi bi-clipboard"></i> Copy link</a>
+</div>
 {% if toc %}
   <details class="my-4">
     <summary>Contents</summary>

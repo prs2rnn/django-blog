@@ -52,17 +52,16 @@ main a:hover {
   text-decoration: underline;
   opacity: 0.9;
 }
-footer a {
+footer a,
+#copy-link {
   color: var(--text);
   text-decoration: none;
   text-transform: capitalize;
   opacity: 0.7;
   font-size: smaller;
 }
-footer a:hover {
-  opacity: 1;
-}
-footer a:hover {
+footer a:hover,
+#copy-link:hover {
   opacity: 1;
 }
 .border-white {
